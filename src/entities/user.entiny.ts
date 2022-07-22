@@ -18,10 +18,10 @@ export class User {
     @PrimaryGeneratedColumn("uuid")
     readonly id: string;
   
-    @Column({ type: "varchar", width: 120, nullable: false, unique: true })
+    @Column({ type: "varchar", width: 120, nullable: false})
     name: string;
   
-    @Column({ type: "varchar", width: 50, nullable: false })
+    @Column({ type: "varchar", width: 50, nullable: false, unique: true  })
     username: string;
   
     @Column({ type: "varchar", width: 256, nullable: false })

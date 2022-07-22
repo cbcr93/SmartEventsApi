@@ -1,5 +1,16 @@
+import express from "express";
 import { Router } from "express";
+import { expressYupMiddleware } from "express-yup-middleware";
+import UserController from "../../controllers/users.controller";
+import { userCreateValidator } from "../../validations/users";
 
-const routes = Router();
+const userRoutes = express.Router();
 
-export default routes;
+userRoutes
+    .route("")
+    .get(UserController.index)
+    .post(expressYupMiddleware({ schemaValidator: userCreateValidator}),
+        UserController.store
+        );
+
+export default userRoutes;

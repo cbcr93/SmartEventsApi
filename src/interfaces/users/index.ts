@@ -5,6 +5,9 @@ export interface ICreateUser {
     username: string;
     age: number;
     isSeller: boolean;
-    created_at: DataTransfer;
-    updated_at: DataTransfer;
   }
+
+export interface ILoginUser{
+  login: string;
+  password: string;
+}
