@@ -6,10 +6,13 @@ import {
     Column,
     CreateDateColumn,
     UpdateDateColumn,
+    OneToOne,
+    JoinColumn,
   } from "typeorm";
   import { v4 as uuid } from "uuid";
   import { Exclude } from "class-transformer";
 import { User } from "./user.entiny";
+import { Tickts } from "./tickts.entiny";
 
 @Entity("order")
 export class Order {
@@ -19,15 +22,26 @@ export class Order {
     @Column()
     isPaid: boolean;
 
-    @OneToMany((type) => Tickts, (tickts) => tickts.order, { eager: true })
-    tickts: Tickts[];
-
-    @OneToMany((type) => User, (users) => users.orders, { eager: true })
-    user: User;
+    @CreateDateColumn({
+        name: "created_at",
+        type: "timestamp",
+      })
+      createdAt: Date;
+    
+      @UpdateDateColumn({
+        name: "updated_at",
+        type: "timestamp",
+      })
+      updatedAt: Date;
 
     @Exclude()
     @ManyToOne((type) => User, (users) => users.orders)
-    user: User; 
+    user: User;
+
+    
+    @OneToOne((type) => Tickts, { eager: true })
+    @JoinColumn()
+    tickts: Tickts;
 
 
 }

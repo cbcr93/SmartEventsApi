@@ -5,6 +5,8 @@ import {
     Column,
     CreateDateColumn,
     UpdateDateColumn,
+    OneToOne,
+    JoinColumn,
   } from "typeorm";
   import { v4 as uuid } from "uuid";
   import { Exclude } from "class-transformer";
@@ -47,8 +49,6 @@ export class Tickts {
     @ManyToOne((type) => User, (user) => user.tickts)
     user: User; 
 
-    @Exclude()
-    @ManyToOne((type) => Order, (orders) => orders.user)
-    order: Order; 
+    
 
 }
