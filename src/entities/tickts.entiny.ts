@@ -9,6 +9,7 @@ import {
   import { v4 as uuid } from "uuid";
   import { Exclude } from "class-transformer";
 import { User } from "./user.entiny";
+import { Order } from "./orders.entiny";
 
 @Entity("tickts")
 export class Tickts {
@@ -45,5 +46,9 @@ export class Tickts {
     @Exclude()
     @ManyToOne((type) => User, (user) => user.tickts)
     user: User; 
+
+    @Exclude()
+    @ManyToOne((type) => Order, (orders) => orders.user)
+    order: Order; 
 
 }
