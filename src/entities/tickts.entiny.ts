@@ -27,7 +27,7 @@ export class Tickts {
     @Column({ type: "decimal", precision: 10, scale: 2, nullable: false })
     price: number
 
-    @Column({ type: "integer", precision: 10, nullable: false })
+    @Column()
     amounts: number
   
     @CreateDateColumn({
