@@ -13,4 +13,8 @@ userRoutes
         UserController.store
         );
 
+userRoutes
+    .route("/:id")
+    .get(UserController.show)
+
 export default userRoutes;
