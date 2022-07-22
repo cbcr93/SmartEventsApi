@@ -1,6 +1,6 @@
 import AppDataSource from "../../data-source";
 import bcrypt from "bcryptjs";
-import { User } from "../../entities/user.entiny";
+import { User } from "../../entities/user.entity";
 import { ICreateUser } from "../../interfaces/users";
 import { instanceToInstance } from "class-transformer";
 

@@ -1,6 +1,6 @@
 import { instanceToInstance } from "class-transformer";
 import AppDataSource from "../../data-source";
-import { User } from "../../entities/user.entiny";
+import { User } from "../../entities/user.entity";
 
 const userListAllService = async (): Promise<User[]> => {
   const userRepository = AppDataSource.getRepository(User);

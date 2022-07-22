@@ -1,7 +1,7 @@
 import AppDataSource from "../../data-source";
 import bcryptjs from "bcryptjs";
 import jwt from "jsonwebtoken";
-import { User } from "../../entities/user.entiny";
+import { User } from "../../entities/user.entity";
 import { ILoginUser } from "../../interfaces/users";
 
 export default class LoginUserService {

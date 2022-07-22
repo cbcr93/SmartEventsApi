@@ -10,8 +10,8 @@ import {
   } from "typeorm";
   import { v4 as uuid } from "uuid";
   import { Exclude } from "class-transformer";
-import { Tickts } from "./tickts.entiny";
-import { Order } from "./orders.entiny";
+import { Tickts } from "./tickts.entity";
+import { Order } from "./orders.entity";
 
 @Entity("users")
 export class User {
