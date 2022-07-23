@@ -11,7 +11,7 @@ export default class TicketCreateService {
     const userRepository = AppDataSource.getRepository(User);
     const user = await userRepository.findOne({
         where: {
-          id: data.userId,
+          id: userId,
         },
       });
 
