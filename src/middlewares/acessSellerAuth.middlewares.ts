@@ -12,7 +12,7 @@ const AcessSellerAuthMiddleware = async (
     const token = req.headers.authorization;
 
     if (!token) {
-        throw new AppError("Missing Authorization token")
+        throw new AppError("Missing Authorization token", 401)
     }
 
     const verifyToken = token?.split(" ")[1];

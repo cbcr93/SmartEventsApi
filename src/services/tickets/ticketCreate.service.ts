@@ -3,6 +3,7 @@ import { instanceToInstance } from "class-transformer";
 import { Tickts } from "../../entities/tickts.entity";
 import { ICreateTicket } from "../../interfaces/tickts";
 import { User } from "../../entities/user.entity";
+import AppError from "../../../errors/appError";
 
 export default class TicketCreateService {
     public static async execute(data: ICreateTicket){
@@ -13,7 +14,11 @@ export default class TicketCreateService {
         where: {
           id: userId,
         },
-      });
+    });
+
+    if(!user){
+        throw new AppError("User not found", 404)
+    }
 
     const newTicket = ticketRepository.create({
         title,

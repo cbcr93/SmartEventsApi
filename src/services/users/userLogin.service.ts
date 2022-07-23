@@ -3,6 +3,7 @@ import bcryptjs from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { User } from "../../entities/user.entity";
 import { ILoginUser } from "../../interfaces/users";
+import AppError from "../../../errors/appError";
 
 export default class LoginUserService {
     public static async execute(data: ILoginUser) {
@@ -20,7 +21,7 @@ export default class LoginUserService {
             findUser = findUsername
         }
         else{
-            throw new Error("Email or password invalid");
+            throw new AppError("Email or password invalid", 401);
         }
 
         
@@ -30,7 +31,7 @@ export default class LoginUserService {
         );
     
         if (!comparePasswordHash) {
-            throw new Error("Email or password invalid");
+            throw new AppError("Email or password invalid", 401);
         }
     
         const generateToken = jwt.sign(
