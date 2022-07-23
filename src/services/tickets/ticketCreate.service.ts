@@ -3,7 +3,7 @@ import { instanceToInstance } from "class-transformer";
 import { Tickts } from "../../entities/tickts.entity";
 import { ICreateTicket } from "../../interfaces/tickts";
 import { User } from "../../entities/user.entity";
-import AppError from "../../../errors/appError";
+import AppError from "../../errors/appError";
 
 export default class TicketCreateService {
     public static async execute(data: ICreateTicket){

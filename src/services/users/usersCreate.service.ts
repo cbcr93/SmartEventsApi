@@ -3,7 +3,7 @@ import bcrypt from "bcryptjs";
 import { User } from "../../entities/user.entity";
 import { ICreateUser } from "../../interfaces/users";
 import { instanceToInstance } from "class-transformer";
-import AppError from "../../../errors/appError";
+import AppError from "../../errors/appError";
 
 const userCreate = async (data: ICreateUser): Promise<User> => {
     const {name, email, username, isSeller, password} = data
