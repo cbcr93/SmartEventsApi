@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import TicketCreateService from "../services/tickets/ticketCreate.service";
 import ticketsListAllService from "../services/tickets/ticketListAll.service";
+import TicketsShowService from "../services/tickets/ticketShow.service";
 
 export default class TicketsController {
     public static async store(req: Request, res: Response) {
@@ -21,7 +22,9 @@ export default class TicketsController {
     }
 
     public static async show(req: Request, res: Response) {
-      
+        const {id} = req.params
+        const userById = await TicketsShowService.execute(id);
+        return res.status(200).json(userById);
     }
 
     public static async update(req: Request, res: Response) {
