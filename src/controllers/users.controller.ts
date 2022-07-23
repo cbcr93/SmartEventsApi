@@ -9,7 +9,6 @@ import userListAllService from "../services/users/usersListAll.service";
 export default class UserController {
     public static async store(req: Request, res: Response) {
         try {
-          console.log(req.body)
             const data = req.body;
             const user = await userCreate(data);
             return res.status(201).json(user);

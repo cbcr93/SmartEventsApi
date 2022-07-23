@@ -34,11 +34,13 @@ export default class LoginUserService {
         }
     
         const generateToken = jwt.sign(
-            { username: findUser.username },
+            { 
+                username: findUser.username
+            },
             String(process.env.JWT_SECRET_KEY),
             {
-            expiresIn: "24h",
-            subject: findUser.id,
+                expiresIn: "24h",
+                subject: findUser.id,
             }
         );
     

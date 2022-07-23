@@ -10,7 +10,7 @@ export const userCreateValidator = {
           .string()
           .required('password is required'),
         username: yup.string().required('username number is required'),
-        isSeller: yup.bool().required('email is required'),
+        isSeller: yup.bool().required('isSeller is required'),
       }),
     },
   },
