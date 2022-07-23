@@ -2,13 +2,15 @@ import { NextFunction, Request, Response } from "express";
 import jwt, { verify } from "jsonwebtoken";
 import AppError from "../../errors/appError";
 import AppDataSource from "../data-source";
+import { Tickts } from "../entities/tickts.entity";
 import { User } from "../entities/user.entity";
 
-const AcessSellerAuthMiddleware = async (
+const AcessOwnerTicketsMiddleware = async (
     req: Request,
     res: Response,
     next: NextFunction
 ) => {
+    const {id} = req.params;
     const token = req.headers.authorization;
 
     if (!token) {
@@ -34,13 +36,21 @@ const AcessSellerAuthMiddleware = async (
 
     const seller = user?.isSeller
 
+    const ticketRepo = AppDataSource.getRepository(Tickts);
+    const ticket = user?.tickts.find((ticket) => ticket.id === id)
+
+
     if(!seller){
-        throw new AppError("Missing Authorization token", 401)
+        throw new AppError("Missing Authorization token - seller", 401)
     }
 
-    req.userId = sub as string;
+    if(!ticket){
+        throw new AppError("Missing Authorization token - ticket", 401)
+    }
+
+
     
     return next();
     
 };
-export default AcessSellerAuthMiddleware;
+export default AcessOwnerTicketsMiddleware;

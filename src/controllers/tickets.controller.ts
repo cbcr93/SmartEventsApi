@@ -1,7 +1,9 @@
 import { Request, Response } from "express";
 import TicketCreateService from "../services/tickets/ticketCreate.service";
+import TicketDeleteService from "../services/tickets/ticketDelete.service";
 import ticketsListAllService from "../services/tickets/ticketListAll.service";
 import TicketsShowService from "../services/tickets/ticketShow.service";
+import TicketUpdateService from "../services/tickets/ticketUpdate.service";
 
 export default class TicketsController {
     public static async store(req: Request, res: Response) {
@@ -28,10 +30,23 @@ export default class TicketsController {
     }
 
     public static async update(req: Request, res: Response) {
-     
+      
+        const {id} = req.params;
+        let data = { ...req.body };
+        data = { ...data, id };
+        
+        const update = await TicketUpdateService.execute(data);
+      
+        return res.status(200).json({
+            message: "Ticket updated",
+        });
     }
 
     public static async delete(req: Request, res: Response) {
+
+        const {id} = req.params;
+        await TicketDeleteService.execute(id);
+        return res.status(200).json({ message: "User deleted" });
       
     }
 

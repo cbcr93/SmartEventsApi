@@ -1,6 +1,7 @@
 import express from "express";
 import { expressYupMiddleware } from "express-yup-middleware";
 import TicketsController from "../../controllers/tickets.controller";
+import AcessOwnerTicketsMiddleware from "../../middlewares/acessOwnerTickets.middlewares";
 import AcessSellerAuthMiddleware from "../../middlewares/acessSellerAuth.middlewares";
 import { ticketCreateValidator } from "../../validations/tickets";
 
@@ -18,7 +19,7 @@ ticketsRoutes
 ticketsRoutes
     .route("/:id")
     .get(AcessSellerAuthMiddleware, TicketsController.show)
-    .patch(AcessSellerAuthMiddleware, TicketsController.update)
-    .delete(AcessSellerAuthMiddleware, TicketsController.delete)
+    .patch(AcessOwnerTicketsMiddleware, TicketsController.update)
+    .delete(AcessOwnerTicketsMiddleware, TicketsController.delete)
 
 export default ticketsRoutes;
