@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import jwt, { verify } from "jsonwebtoken";
-import AppError from "../../errors/appError";
+import AppError from "../errors/appError";
 import AppDataSource from "../data-source";
 import { Tickts } from "../entities/tickts.entity";
 import { User } from "../entities/user.entity";
@@ -41,11 +41,11 @@ const AcessOwnerTicketsMiddleware = async (
 
 
     if(!seller){
-        throw new AppError("Missing Authorization token - seller", 401)
+        throw new AppError("Missing Authorization token", 401)
     }
 
     if(!ticket){
-        throw new AppError("Missing Authorization token - ticket", 401)
+        throw new AppError("Missing Authorization token", 401)
     }
 
 

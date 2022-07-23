@@ -1,5 +1,5 @@
 import { DeleteResult } from "typeorm";
-import AppError from "../../../errors/appError";
+import AppError from "../../errors/appError";
 import AppDataSource from "../../data-source";
 import { User } from "../../entities/user.entity";
 

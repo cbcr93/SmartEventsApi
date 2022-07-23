@@ -1,4 +1,4 @@
-import AppError from "../../../errors/appError";
+import AppError from "../../errors/appError";
 import AppDataSource from "../../data-source";
 import { Tickts } from "../../entities/tickts.entity";
 import { User } from "../../entities/user.entity";

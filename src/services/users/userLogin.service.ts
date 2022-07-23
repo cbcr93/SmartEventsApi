@@ -3,7 +3,7 @@ import bcryptjs from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { User } from "../../entities/user.entity";
 import { ILoginUser } from "../../interfaces/users";
-import AppError from "../../../errors/appError";
+import AppError from "../../errors/appError";
 
 export default class LoginUserService {
     public static async execute(data: ILoginUser) {

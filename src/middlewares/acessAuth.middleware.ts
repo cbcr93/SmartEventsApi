@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import jwt, { verify } from "jsonwebtoken";
-import AppError from "../../errors/appError";
+import AppError from "../errors/appError";
 import AppDataSource from "../data-source";
 import { User } from "../entities/user.entity";
 
