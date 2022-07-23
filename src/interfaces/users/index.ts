@@ -3,11 +3,18 @@ export interface ICreateUser {
   email: string;
   password: string;
   username: string;
-  age: number;
   isSeller: boolean;
 }
 
 export interface ILoginUser{
   login: string;
   password: string;
+}
+
+export interface IUpdateUser{
+  id: string;
+  name?: string;
+  email?: string;
+  password?: string;
+  username?: string;
 }
