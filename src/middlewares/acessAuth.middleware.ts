@@ -32,6 +32,8 @@ const AcessAuthMiddleware = async (
       },
     });
 
+    req.userId = sub as string;
+
     if (user) {
       return next();
     }
