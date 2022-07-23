@@ -1,39 +1,38 @@
 import {
     Entity,
     PrimaryGeneratedColumn,
-    OneToMany,
-    JoinTable,
+    ManyToOne,
     Column,
     CreateDateColumn,
     UpdateDateColumn,
-    PrimaryColumn,
+    OneToOne,
+    JoinColumn,
   } from "typeorm";
   import { v4 as uuid } from "uuid";
   import { Exclude } from "class-transformer";
-import { Tickts } from "./tickts.entiny";
-import { Order } from "./orders.entiny";
+import { User } from "./user.entity";
+import { Order } from "./orders.entity";
 
-@Entity("users")
-export class User {
+@Entity("tickts")
+export class Tickts {
     @PrimaryGeneratedColumn("uuid")
     readonly id: string;
   
     @Column({ type: "varchar", width: 120, nullable: false, unique: true })
-    name: string;
+    title: string;
   
     @Column({ type: "varchar", width: 50, nullable: false })
-    username: string;
+    category: string;
   
     @Column({ type: "varchar", width: 256, nullable: false })
-    email: string;
-  
-    @Exclude()
-    @Column({ type: "varchar", width: 256, nullable: false })
-    password: string;
+    description: string;
+
+    @Column({ type: "decimal", precision: 10, scale: 2, nullable: false })
+    price: number
 
     @Column()
-    isSeller: boolean;
-
+    amounts: number
+  
     @CreateDateColumn({
       name: "created_at",
       type: "timestamp",
@@ -45,12 +44,11 @@ export class User {
       type: "timestamp",
     })
     updatedAt: Date;
+    
+    @Exclude()
+    @ManyToOne((type) => User, (user) => user.tickts)
+    user: User; 
 
-    @OneToMany((type) => Tickts, (tickts) => tickts.user, { eager: true })
-    @JoinTable()
-    tickts: Tickts[];
+    
 
-    @OneToMany((type) => Order, (tickts) => tickts.user, { eager: true })
-    @JoinTable()
-    orders: Order[];
 }
