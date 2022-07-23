@@ -4,7 +4,7 @@ import AppError from "../../errors/appError";
 import AppDataSource from "../data-source";
 import { User } from "../entities/user.entity";
 
-const AcessAuthMiddleware = async (
+const AcessSellerAuthMiddleware = async (
     req: Request,
     res: Response,
     next: NextFunction
@@ -12,12 +12,12 @@ const AcessAuthMiddleware = async (
     const token = req.headers.authorization;
 
     if (!token) {
-      throw new AppError("Missing Authorization token", 401)
+        throw new AppError("Missing Authorization token", 401)
     }
 
     const verifyToken = token?.split(" ")[1];
     if(!verifyToken || verifyToken.length <=1){
-      throw new AppError("Missing Authorization token", 401)
+        throw new AppError("Missing Authorization token", 401)
     }
     const secret = String(process.env.JWT_SECRET_KEY)
 
@@ -27,13 +27,20 @@ const AcessAuthMiddleware = async (
 
     const userRepository = AppDataSource.getRepository(User);
     const user = await userRepository.findOne({
-      where: {
+        where: {
         id: String(sub),
-      },
+        },
     });
 
-    if (user) {
-      return next();
+    const seller = user?.isSeller
+
+    if(!seller){
+        throw new AppError("Missing Authorization token", 401)
     }
+
+    req.userId = sub as string;
+    
+    return next();
+    
 };
-export default AcessAuthMiddleware;
+export default AcessSellerAuthMiddleware;

@@ -10,7 +10,7 @@ import {
   } from "typeorm";
   import { v4 as uuid } from "uuid";
   import { Exclude } from "class-transformer";
-import { User } from "./user.entity";
+import { User } from "./user.entity"
 import { Order } from "./orders.entity";
 
 @Entity("tickts")
@@ -34,14 +34,14 @@ export class Tickts {
     amounts: number
   
     @CreateDateColumn({
-      name: "created_at",
-      type: "timestamp",
+        name: "created_at",
+        type: "timestamp",
     })
     createdAt: Date;
   
     @UpdateDateColumn({
-      name: "updated_at",
-      type: "timestamp",
+        name: "updated_at",
+        type: "timestamp",
     })
     updatedAt: Date;
     

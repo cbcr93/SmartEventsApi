@@ -1,4 +1,5 @@
 import { DeleteResult } from "typeorm";
+import AppError from "../../../errors/appError";
 import AppDataSource from "../../data-source";
 import { User } from "../../entities/user.entity";
 
@@ -13,7 +14,7 @@ export default class UserDeleteService {
         });
     
         if (!userDelete) {
-            throw new Error("Property not found");
+            throw new AppError("User not found", 401);
         }
         return userRepo.delete(id);
     }

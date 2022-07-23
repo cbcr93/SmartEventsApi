@@ -25,14 +25,14 @@ export class Order {
     @CreateDateColumn({
         name: "created_at",
         type: "timestamp",
-      })
-      createdAt: Date;
+    })
+    createdAt: Date;
     
-      @UpdateDateColumn({
+    @UpdateDateColumn({
         name: "updated_at",
         type: "timestamp",
-      })
-      updatedAt: Date;
+    })
+    updatedAt: Date;
 
     @Exclude()
     @ManyToOne((type) => User, (users) => users.orders)
