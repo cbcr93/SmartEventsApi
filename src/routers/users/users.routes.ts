@@ -16,8 +16,8 @@ userRoutes
 
 userRoutes
     .route("/:id")
-    .get(AcessAuthMiddleware, UserController.show)
-    .patch(AcessAuthMiddleware, UserController.update)
-    .delete(AcessAuthMiddleware, UserController.delete)
+    .get(UserController.show)
+    .patch(UserController.update)
+    .delete(UserController.delete)
 
 export default userRoutes;

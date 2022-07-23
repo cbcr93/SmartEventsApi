@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import UserDeleteService from "../services/users/userDelete.service";
 import LoginUserService from "../services/users/userLogin.service";
-import UpdateUserService from "../services/users/userPatch.service";
+import UpdateUserService from "../services/users/userUpdate.service";
 import userCreate from "../services/users/usersCreate.service";
 import UserShowService from "../services/users/userShow.service";
 import userListAllService from "../services/users/usersListAll.service";
