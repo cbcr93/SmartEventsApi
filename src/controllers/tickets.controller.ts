@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import TicketCreateService from "../services/tickets/ticketCreate.service";
+import ticketsListAllService from "../services/tickets/ticketListAll.service";
 
 export default class TicketsController {
     public static async store(req: Request, res: Response) {
@@ -15,7 +16,8 @@ export default class TicketsController {
     
 
     public static async index(req: Request, res: Response) {
-      
+        const allTickets = await ticketsListAllService();
+        return res.status(200).json(allTickets);
     }
 
     public static async show(req: Request, res: Response) {

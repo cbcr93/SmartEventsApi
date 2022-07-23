@@ -21,7 +21,7 @@ const AcessAuthMiddleware = async (
     }
     const secret = String(process.env.JWT_SECRET_KEY)
 
-    const decoded = verify(verifyToken, secret);
+    const decoded = jwt.verify(verifyToken, secret);
 
     const { sub } = decoded;
 

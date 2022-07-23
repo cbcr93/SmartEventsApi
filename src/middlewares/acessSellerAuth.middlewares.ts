@@ -10,6 +10,7 @@ const AcessSellerAuthMiddleware = async (
     next: NextFunction
 ) => {
     const token = req.headers.authorization;
+    console.log(token)
 
     if (!token) {
         throw new AppError("Missing Authorization token", 401)
@@ -21,7 +22,7 @@ const AcessSellerAuthMiddleware = async (
     }
     const secret = String(process.env.JWT_SECRET_KEY)
 
-    const decoded = verify(verifyToken, secret);
+    const decoded = jwt.verify(verifyToken, secret);
 
     const { sub } = decoded;
 

@@ -12,7 +12,8 @@ ticketsRoutes
         expressYupMiddleware({ schemaValidator: ticketCreateValidator}),
         AcessSellerAuthMiddleware,
         TicketsController.store
-        );
+        )
+    .get(TicketsController.index);
 
 ticketsRoutes
     .route("/:id")
