@@ -32,7 +32,7 @@ const AcessAuthMiddleware = async (
       },
     });
 
-    req.userId = sub as string;
+    req.buyerId = sub as string; 
 
     if (user) {
       return next();

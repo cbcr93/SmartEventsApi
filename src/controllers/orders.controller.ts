@@ -4,9 +4,10 @@ import OrderCreateService from "../services/orders/orderCreate.service";
 export default class OrderController {
     public static async store(req: Request, res: Response) {
         const {ticketId} = req.params;
-        const { userId } = req;
-        const data = {ticketId, userId};
+        const { buyerId } = req;
+        const data = {ticketId, buyerId};
         const user = await OrderCreateService.execute(data);
+     
         return res.status(201).json(user);
          
     }
