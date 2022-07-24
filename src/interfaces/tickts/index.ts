@@ -4,7 +4,7 @@ export interface ICreateTicket {
     description: string;
     amounts: number;
     category: string;
-    userId: string;
+    sellerId: string;
 }
 
 export interface IUpdateTicket {

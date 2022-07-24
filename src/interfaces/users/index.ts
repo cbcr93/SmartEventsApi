@@ -18,3 +18,11 @@ export interface IUpdateUser{
     password?: string;
     username?: string;
 }
+
+export interface IReturnUser {
+    id: string;
+    name: string;
+    username: string;
+    email: string;
+    isSeller: boolean;
+};

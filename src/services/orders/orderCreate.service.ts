@@ -8,7 +8,7 @@ import { instanceToInstance } from "class-transformer";
 
 export default class OrderCreateService {
     public static async execute(data: ICreateOrder){
-    const { ticketId, buyerId } = data
+    const { ticketId, userId, amountBuy } = data
     const ticketRepository = AppDataSource.getRepository(Tickts);
     const ticket = await ticketRepository.findOne({
         where: {
@@ -19,7 +19,7 @@ export default class OrderCreateService {
     const userRepository = AppDataSource.getRepository(User);
     const user = await userRepository.findOne({
         where: {
-          id: buyerId,
+          id: userId,
         },
     });
 
@@ -38,6 +38,7 @@ export default class OrderCreateService {
 
     const newOrder = orderRepository.create({
         isPaid,
+        amountBuy,
         tickts: ticket as Tickts,
         user: user as User,
         createdAt: new Date(),
@@ -46,6 +47,23 @@ export default class OrderCreateService {
 
     await orderRepository.save(newOrder);
 
-    return instanceToInstance(newOrder);
+    const returnOrder = {
+        id: newOrder.id,
+        isPaid: false,
+        amountBuy: newOrder.amountBuy,
+        createdAt: newOrder.createdAt,
+        updatedAt: newOrder.updatedAt,
+        tickts: {
+            id: newOrder.tickts.id,
+            title: newOrder.tickts.title,
+            category: newOrder.tickts.category,
+            description: newOrder.tickts.description,
+            price: newOrder.tickts.price,
+        }
+    }
+
+
+
+    return instanceToInstance(returnOrder);
     };
 }
