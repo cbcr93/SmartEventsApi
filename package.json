@@ -8,8 +8,9 @@
   "scripts": {
     "dev": "ts-node-dev --files --ignore src/node_modules src/server.ts",
     "typeorm": "typeorm-ts-node-commonjs",
-    "deploy": "git add . && git commit -m Heroku && git push heroku master"
-
+    "deploy": "git add . && git commit -m Heroku && git push heroku master",
+    "start": "node dist/app.js",
+    "build": "tsc"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",
