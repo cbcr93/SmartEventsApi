@@ -30,13 +30,13 @@ export default class  OrderListAllService {
                 });
 
                 const returnedorder = {
-                  ...order,
-                  ticket: {
-                    id: actualTicket?.id as string,
-                    title: actualTicket?.title as string,
-                    category: actualTicket?.category as string,
-                    description: actualTicket?.description as string,
-                    price: actualTicket?.price as number,
+                    ...order,
+                    ticket: {
+                        id: actualTicket?.id as string,
+                        title: actualTicket?.title as string,
+                        category: actualTicket?.category as string,
+                        description: actualTicket?.description as string,
+                        price: actualTicket?.price as number,
 
                   },
                 };

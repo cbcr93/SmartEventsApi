@@ -16,5 +16,6 @@ ordersRoutes
 
 ordersRoutes 
     .route("/:id")
+    .patch(OrderController.update)
 
 export default ordersRoutes;

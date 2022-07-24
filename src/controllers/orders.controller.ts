@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import OrderCreateService from "../services/orders/orderCreate.service";
 import OrderListAllService from "../services/orders/orderListAll.service";
+import OrderUpdateService from "../services/orders/orderUpdate.service";
 
 export default class OrderController {
     public static async store(req: Request, res: Response) {
@@ -26,7 +27,15 @@ export default class OrderController {
     }
 
     public static async update(req: Request, res: Response) {
+        const {id} = req.params;
+        const {isPaid} = req.body ;
+        const data = { isPaid, id };
+        
+        const update = await OrderUpdateService.execute(data);
       
+        return res.status(200).json({
+            message: "Ticket updated",
+        });
     }
 
     public static async delete(req: Request, res: Response) {
