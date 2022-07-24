@@ -1,16 +1,20 @@
 import express from "express";
 import OrderController from "../../controllers/orders.controller";
 import AcessAuthMiddleware from "../../middlewares/acessAuth.middleware";
+import AcessOwnerTicketsMiddleware from "../../middlewares/acessOwnerTickets.middlewares";
 
 const ordersRoutes = express.Router();
 
 ordersRoutes
     .route("")
-    .get(OrderController.index)
+    .get(AcessAuthMiddleware, OrderController.index)
     
 
 ordersRoutes
-    .route("/:id")
+    .route("/seller/:id")
+    .get(AcessOwnerTicketsMiddleware, OrderController.index)
 
+ordersRoutes 
+    .route("/:id")
 
 export default ordersRoutes;

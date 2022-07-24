@@ -50,7 +50,7 @@ export class User {
     @JoinTable()
     tickts: Tickts[];
 
-    @OneToMany((type) => Order, (tickts) => tickts.user, { eager: true })
+    @OneToMany((type) => Order, (orders) => orders.user, { eager: true })
     @JoinTable()
     orders: Order[];
 }

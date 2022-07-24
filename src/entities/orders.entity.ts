@@ -22,6 +22,9 @@ export class Order {
     @Column()
     isPaid: boolean;
 
+    @Column()
+    amountBuy: number;
+
     @CreateDateColumn({
         name: "created_at",
         type: "timestamp",
@@ -39,8 +42,7 @@ export class Order {
     user: User;
 
     
-    @OneToOne((type) => Tickts, { eager: true })
-    @JoinColumn()
+    @ManyToOne((type) => Tickts, (tickets) => tickets.orders)
     tickts: Tickts;
 
 
