@@ -5,6 +5,7 @@ import UpdateUserService from "../services/users/userUpdate.service";
 import userCreate from "../services/users/usersCreate.service";
 import UserShowService from "../services/users/userShow.service";
 import userListAllService from "../services/users/usersListAll.service";
+import UserListAllService from "../services/users/usersListAll.service";
 
 export default class UserController {
     public static async store(req: Request, res: Response) {
@@ -25,7 +26,7 @@ export default class UserController {
 
     public static async index(req: Request, res: Response) {
       
-        const allUsers = await userListAllService();
+        const allUsers = await UserListAllService.execute();
         return res.status(200).json(allUsers);
       
     }

@@ -8,6 +8,22 @@ export default class  TicketsListAllService {
         const ticketsRepository = AppDataSource.getRepository(Tickts);
         const allticketss = await ticketsRepository.find();
 
-        return instanceToInstance(allticketss);
-    };
+
+        const ticktList = allticketss.map((tickt) => {
+
+            const returnedorder = {
+                id: tickt.id as string,
+                title: tickt.title as string,
+                category: tickt.category as string,
+                description: tickt.description as string,
+                price: tickt.price as number,
+                createdAt: tickt.createdAt as Date,
+                updatedAt: tickt.updatedAt as Date,
+            };
+    
+            return returnedorder;
+        });
+        
+        return ticktList;
+    }
 }

@@ -1,14 +1,15 @@
 import express from "express";
 import OrderController from "../../controllers/orders.controller";
-import AcessAuthMiddleware from "../../middlewares/acessAuth.middleware";
+
+import AcessOwnerOrderMiddleware from "../../middlewares/acessOwnerOrder.middleware";
 import AcessOwnerTicketsMiddleware from "../../middlewares/acessOwnerTickets.middlewares";
+import AcessSellerAuthMiddleware from "../../middlewares/acessSellerAuth.middlewares";
 
 const ordersRoutes = express.Router();
 
 ordersRoutes
     .route("")
-    .get(AcessAuthMiddleware, OrderController.index)
-    
+    .get(AcessOwnerOrderMiddleware, OrderController.index)
 
 ordersRoutes
     .route("/seller/:id")
@@ -16,6 +17,6 @@ ordersRoutes
 
 ordersRoutes 
     .route("/:id")
-    .patch(OrderController.update)
+    .patch(AcessSellerAuthMiddleware,OrderController.update)
 
 export default ordersRoutes;
