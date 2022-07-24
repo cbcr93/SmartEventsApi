@@ -7,7 +7,7 @@ const AppDataSource =
         type: "sqlite",
         database: ":memory:",
         entities: ["src/entities/*.ts"],
-        synchronize: true,
+        synchronize: true, 
       })
     : new DataSource({
         type: "postgres",
@@ -23,4 +23,4 @@ const AppDataSource =
         migrations: process.env.NODE_ENV === "production" ? ["dist/migrations/*.ts"] : ["src/migrations/*.ts"],
       });
 
-export default AppDataSource;
+export default AppDataSource; 
