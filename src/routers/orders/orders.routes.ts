@@ -6,6 +6,7 @@ const ordersRoutes = express.Router();
 
 ordersRoutes
     .route("")
+    .get(OrderController.index)
     
 
 ordersRoutes

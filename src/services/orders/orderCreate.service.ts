@@ -8,7 +8,7 @@ import { instanceToInstance } from "class-transformer";
 
 export default class OrderCreateService {
     public static async execute(data: ICreateOrder){
-    const { ticketId, buyerId } = data
+    const { ticketId, userId } = data
     const ticketRepository = AppDataSource.getRepository(Tickts);
     const ticket = await ticketRepository.findOne({
         where: {
@@ -19,7 +19,7 @@ export default class OrderCreateService {
     const userRepository = AppDataSource.getRepository(User);
     const user = await userRepository.findOne({
         where: {
-          id: buyerId,
+          id: userId,
         },
     });
 

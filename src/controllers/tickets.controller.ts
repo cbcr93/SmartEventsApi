@@ -7,10 +7,10 @@ import TicketUpdateService from "../services/tickets/ticketUpdate.service";
 
 export default class TicketsController {
     public static async store(req: Request, res: Response) {
-        const { userId } = req;
+        const { sellerId } = req;
         let data = { ...req.body };
-        if (userId) {
-          data = { ...data, userId };
+        if (sellerId) {
+          data = { ...data, sellerId };
         }
         const tickets = await TicketCreateService.execute(data);
         return res.status(201).json(tickets);
@@ -19,14 +19,15 @@ export default class TicketsController {
     
 
     public static async index(req: Request, res: Response) {
-        const allTickets = await ticketsListAllService();
+
+        const allTickets = await ticketsListAllService.execute();
         return res.status(200).json(allTickets);
     }
 
     public static async show(req: Request, res: Response) {
         const {id} = req.params
-        const userById = await TicketsShowService.execute(id);
-        return res.status(200).json(userById);
+        const ticketById = await TicketsShowService.execute(id);
+        return res.status(200).json(ticketById);
     }
 
     public static async update(req: Request, res: Response) {

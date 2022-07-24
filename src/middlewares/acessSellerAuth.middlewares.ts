@@ -38,7 +38,7 @@ const AcessSellerAuthMiddleware = async (
         throw new AppError("Missing Authorization token", 401)
     }
 
-    req.userId = sub as string;
+    req.sellerId = sub as string;
     
     return next();
     

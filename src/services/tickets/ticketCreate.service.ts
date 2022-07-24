@@ -7,12 +7,12 @@ import AppError from "../../errors/appError";
 
 export default class TicketCreateService {
     public static async execute(data: ICreateTicket){
-    const { title, price, description, amounts, category, userId } = data
+    const { title, price, description, amounts, category, sellerId } = data
     const ticketRepository = AppDataSource.getRepository(Tickts);
     const userRepository = AppDataSource.getRepository(User);
     const user = await userRepository.findOne({
         where: {
-          id: userId,
+          id: sellerId,
         },
     });
 

@@ -4,7 +4,7 @@ export declare global {
   namespace Express {
     interface Request {
       userId: string
-      buyerId: string
+      sellerId: string
     }
   }
 }
